@@ -95,10 +95,9 @@ func main() {
 
   if len(os.Args) > 1 {
     // We do have domain
-    domain = os.Args[1]
+    domain = strings.TrimSpace(os.Args[1])
+    display_notes(domain)
   }
-
-  display_notes(domain)
 
   if len(os.Args) > 2 {
     // We do have password length
