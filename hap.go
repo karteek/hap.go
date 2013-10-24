@@ -7,6 +7,7 @@ import (
   "strconv"
   "time"
   "strings"
+  "sort"
 
   "crypto/hmac"
   "crypto/sha1"
@@ -52,8 +53,10 @@ func display_notes(domain string) {
     }
   }
 
-  for j := 0; j < i; j++ {
-    fmt.Printf("%s => %s\n", keys[j], nc.Pool[keys[j]].Text)
+  sort.Strings(keys)
+
+  for j := i; j > 0; j-- {
+    fmt.Printf("%s => %s\n", keys[j-1], nc.Pool[keys[j-1]].Text)
   }
 }
 
