@@ -56,7 +56,8 @@ func display_notes(domain string) {
   sort.Strings(keys)
 
   for j := i; j > 0; j-- {
-    fmt.Printf("%s => %s\n", keys[j-1], nc.Pool[keys[j-1]].Text)
+    t, _ := time.Parse("20060102150405" ,keys[j-1])
+    fmt.Printf("%s => %s\n", t.Format("Jan 2, 2006 at 3:04 PM"), nc.Pool[keys[j-1]].Text)
   }
 }
 
