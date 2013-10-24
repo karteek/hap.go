@@ -10,12 +10,11 @@ import (
 
   "crypto/hmac"
   "crypto/sha1"
-  "encoding/base64"
-
   "io/ioutil"
+  "encoding/base64"
   "encoding/json"
 
-  "code.google.com/p/gopass"
+  "github.com/howeyc/gopass"
 )
 
 type Note struct {
@@ -125,7 +124,8 @@ func main() {
     add_note(domain, note)
   }
 
-  master, _ = gopass.GetPass("Enter Master password. Hit enter to abort: ")
+  fmt.Printf("Enter Master password. Hit enter to abort: ")
+  master = string(gopass.GetPasswdMasked()[:])
 
   if len(master) == 0 {
     os.Exit(1)
