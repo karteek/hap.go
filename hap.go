@@ -43,21 +43,19 @@ func read_notes() *NoteCollection {
 
 func display_notes(domain string) {
   nc := read_notes()
-  keys := make([]string, len(nc.Pool))
-  i := 0
+  keys := []string{}
 
   for key, _ := range nc.Pool {
     if nc.Pool[key].Domain == domain {
-      keys[i] = key
-      i++      
+      keys = append(keys, key)
     }
   }
 
   sort.Strings(keys)
 
-  for j := i; j > 0; j-- {
-    t, _ := time.Parse("20060102150405" ,keys[j-1])
-    fmt.Printf("%s => %s\n", t.Format("Jan 2, 2006 at 3:04 PM"), nc.Pool[keys[j-1]].Text)
+  for _, key := range keys {
+    t, _ := time.Parse("20060102150405", key)
+    fmt.Printf("%s => %s\n", t.Format("Jan 2, 2006 at 3:04 PM"), nc.Pool[key].Text)
   }
 }
 
