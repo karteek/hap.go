@@ -15,6 +15,7 @@ import (
 	"encoding/json"
 	"io/ioutil"
 
+	"github.com/atotto/clipboard"
 	"github.com/howeyc/gopass"
 )
 
@@ -131,5 +132,6 @@ func main() {
 	}
 
 	password := gen_pwd(domain+salt, master)[:pass_length]
-	fmt.Println(password)
+	clipboard.WriteAll(password)
+	fmt.Println(password, "copied to your clipboard")
 }
